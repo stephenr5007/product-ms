@@ -2,10 +2,10 @@ version: 0.2
 
 env:
   secrets-manager:
-    LOGIN: SonarCredentials:stephenr5007-1
-    HOST: SonarCredentials:https://sonarclound.io
-    Organization: SonarCredentials:stephenr5007
-    Project: SonarCredentials:stephenr5007-1
+    LOGIN: SonarCredentials:sonartoken
+    HOST: SonarCredentials:host
+    Organization: SonarCredentials:organization
+    Project: SonarCredentials:projectKey
 
 phases:
   install:
