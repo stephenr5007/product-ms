@@ -1,0 +1,88 @@
+drop database userdb;
+create schema userdb;
+use userdb;
+
+
+create table buyer(buyerid varchar(50) primary key,name varchar(50),email varchar(50),phoneno varchar(10),password varchar(25),isprivileged boolean,rewardpoints int,isactive boolean);
+insert into buyer values('B111','sowjanya','Sowji@123.com','9009009123','sowji@12',true,100,false);
+insert into buyer values('B222','Mathan','Manthan@24.com','9009009345','Mathan@123',false,200,true);
+insert into buyer values('B333','Stephen','stephen@54.com','9009009548','stephen@345',true,300,true);
+
+select * from buyer;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table seller(sellerid varchar(10) primary key,name varchar(50),email varchar(50),phoneno varchar(10),password varchar(25),isactive boolean);
+insert into seller values('201','sowji','sowji@24.com','9988776655','infy@123',true);
+insert into seller values('202','Mathan','Mathan@21.com','9988776654','mathan@456',false);
+insert into seller values('203','stephen','stephen@abc.com','9988776653','stephen@789',true);
+
+select * from seller;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table wishlist(buyerid varchar(50),prodid varchar(50),primary key(buyerid,prodid));
+insert into wishlist values('B111','P1100');
+insert into wishlist values('B222','P1102');
+insert into wishlist values('B333','P1103');
+
+select * from wishlist;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table cart(buyerid varchar(50),prodid varchar(50),quantity integer,primary key(buyerid,prodid));
+insert into cart values('B111','P1100',8);
+insert into cart values('B222','P1102',2);
+insert into cart values('B333','P1103',6);
+
+select * from cart;
+
+-----------------------------------------------------------------------------------------
+drop database productdb;
+create schema productdb;
+use productdb;
+
+create table product(prodid varchar(50) primary key, productname varchar(50),price double,stock integer,description varchar(100),image varchar(200),sellerid varchar(10),category varchar(50),subcategory varchar(50),productrating integer);
+
+insert into product values('P1100','Samsung',25000.00,12,'5g mobile','C:\Users\hp\Downloads\IMG-21212845-WA0019.jpg','201','accessories','mobiles',4);
+insert into product values('P1102','RealMeX',30000.00,10,'5g mobile','C:\Users\hp\Downloads\IMG-21222954-WA0017.jpg','202','accessories','mobiles',5);
+insert into product values('P1103','OnePlusNord',24999.00,11,'5g mobile','C:\Users\hp\Downloads\IMG-21222055-WA00198.jpg','203','accessories','mobiles',5);
+select * from product;
+
+create table subscribedproduct(buyerid varchar(50),prodid varchar(50), primary key(buyerid,prodid),quantity integer);
+insert into subscribedproduct values('B111','P1100',9);
+insert into subscribedproduct values('B222','P1102',5);
+insert into subscribedproduct values('B333','P1103',4);
+
+
+
+select * from subscribedproduct;
+
+---------------------------------------------------------------------------------------
+drop database orderdb;
+create schema orderdb;
+use orderdb;
+
+create table orders(orderid varchar(10),buyerid varchar(50),amount double,orderdate date,address varchar(100),status varchar(50));
+insert into orders values('560','B111',2500.35,'2021-04-21','srikakulam','orderplaced');
+insert into orders values('561','B222',3500.35,'2002-08-24','vizag','orderplaced');
+insert into orders values('565','B333',4500.35,'2002-09-4','hyderabad','orderplaced');
+
+
+
+
+select * from orders;
+
+create table productsordered(buyerid varchar(50),prodid varchar(50),sellerid varchar(10),quantity integer,primary key(buyerid,prodid));
+
+insert into productsordered values('B111','P1100','201',75);
+insert into productsordered values('B222','P1102','202',85);
+insert into productsordered values('B333','P1103','203',45);
+
+
+
+
+select * from productsordered;
+
+
+-----------------------------------------------------------//COMPLETED//-------------------------------------------------------------
+
